@@ -1,0 +1,1 @@
+awk -F'|' 'BEGIN{lines=0} BEGIN{longest_line=0} {lines+=1} (length($0)> longest_line){longest_line=length($0)} END{print lines, longest_line}' movies.csv

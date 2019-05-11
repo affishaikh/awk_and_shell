@@ -1,0 +1,6 @@
+#! /bin/bash
+file_name=$1
+echo -e "#! /usr/bin/awk\nBEGIN{\n\n};" >> $file_name
+echo -e "{\n\n};" >> $file_name
+echo -e "END{\n\n};" >> $file_name
+vim $file_name

@@ -1,0 +1,6 @@
+line="abc"
+for ((i=0; i<=5; i++))
+do
+line=$(echo $line|sed 's/$/ /')
+done
+echo $line|sed 's/$/|/' 

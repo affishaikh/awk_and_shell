@@ -1,0 +1,29 @@
+#! /usr/bin/awk
+BEGIN{
+  cipher_text_data=""
+  numbers_str="0,1,2,3,4,5,6,7,8,9"
+  split(numbers_str,numbers,",")
+  words_of_numbers_str="ZERO,ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE"
+  split(words_of_numbers_str,words_of_numbers,",")
+  plain_text_letters_str="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
+  split(plain_text_letters_str,plain_text_letters,",")
+  cipher_text_letters_str="d,u,k,l,w,p,m,t,s,q,n,b,x,z,a,c,f,v,g,h,j,e,r,y,i,o"
+  split(cipher_text_letters_str,cipher_text_letters,",")
+}
+{
+  upper_case_line=toupper($0)
+  cipher_text_data=cipher_text_data""upper_case_line
+  gsub(/[^A-z0-9]/,"",cipher_text_data)
+  for(i=1;i<=10;i++)
+  {
+    gsub(numbers[i],words_of_numbers[i],cipher_text_data)
+  }
+  for(i=1;i<=26;i++)
+  {
+    gsub(plain_text_letters[i],cipher_text_letters[i],cipher_text_data)
+  }
+}
+END{
+  cipher_text_data=toupper(cipher_text_data)
+  print cipher_text_data
+}

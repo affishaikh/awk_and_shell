@@ -1,0 +1,4 @@
+#to print all the directors of korean movies
+awk -F'|' '($8~"Korean"){print $6}' movies.csv|awk '{gsub(", ","\n"); print $0}'|awk 'BEGIN{director=""} (!(director~$0)){director=director"\n"$0} END{print director}'
+#to print no of distinct actors
+awk -F'|' '{print $7}' movies.csv | awk 'gsub(", ", "\n")'|sort|awk 'BEGIN{actor=""; no_of_actors=0} (NR==1 || (actor!=$0)){actor=$0; no_of_actors+=1} END{print no_of_actors}'
